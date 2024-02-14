@@ -1,0 +1,14 @@
+<h3 class="text-center text-main h2" style="font-weight: bolder">
+  ALL CATEGORIES
+</h3>
+
+<div class="row mt-5">
+  <ng-container *ngFor="let item of categories">
+    <div class="product mb-3 col-4" style="height: 33.3%">
+      <div style="height: 450px">
+        <img [src]="item?.image" class="w-100 h-100" />
+      </div>
+      <h4 class="h6 text-main text-center mt-3">{{ item?.name }}</h4>
+    </div>
+  </ng-container>
+</div>

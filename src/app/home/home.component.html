@@ -1,0 +1,43 @@
+<app-main-slider></app-main-slider>
+<div class="row mt-5">
+  <owl-carousel-o [options]="customOptions">
+    <ng-container *ngFor="let item of categories">
+      <ng-template carouselSlide>
+        <img [src]="item?.image" style="height: 250px" />
+        <h4 class="h6 text-center mt-2">{{ item?.name }}</h4>
+      </ng-template>
+    </ng-container>
+  </owl-carousel-o>
+</div>
+<div class="row mt-5">
+  <div>
+    <input
+      [(ngModel)]="searchTerm"
+      type="text"
+      class="w-75 mx-auto my-4 form-control"
+      placeholder="search for product by name"
+    />
+  </div>
+  <div *ngFor="let item of productList | search : searchTerm" class="col-md-2">
+    <div class="product px-2 py-4">
+      <img class="w-100" src="{{ item?.imageCover }}" alt="product image" />
+      <span class="mt-2 text-main cat">{{ item?.category.name }}</span>
+      <h3 class="h6 fw-bolder">
+        {{ item?.title.split(" ").slice(0, 2).join(" ") }}
+      </h3>
+      <div class="mt-2 text-muted d-flex justify-content-between">
+        <span>{{ item?.price | currency : "EGP" }} </span>
+        <span
+          ><i class="fas fa-star rating-color"></i
+          >{{ item?.ratingsAverage }}</span
+        >
+      </div>
+      <button
+        class="btn text-white bg-main w-100 my-2"
+        (click)="gotoDetail(item._id)"
+      >
+        Detail
+      </button>
+    </div>
+  </div>
+</div>

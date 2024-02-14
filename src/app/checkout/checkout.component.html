@@ -1,0 +1,18 @@
+<div class="w-75 mx-auto py-4">
+  <form [formGroup]="checkOutForm" (ngSubmit)="handleSubmit(checkOutForm)">
+    <label for="detail">detail :</label>
+    <input formControlName="detail" class="form-control mb-2" id="detail" />
+    <label for="phone">phone :</label>
+    <input formControlName="phone" class="form-control mb-2" id="phone" />
+    <label for="city">city :</label>
+    <input formControlName="city" class="form-control mb-2" id="city" />
+    <button
+      [disabled]="checkOutForm.invalid"
+      type="submit"
+      class="btn d-block ms-auto text-light bg-main"
+    >
+      <span *ngIf="!isLoading">pay</span>
+      <i *ngIf="isLoading" class="fas fa-spinner fa-spin"></i>
+    </button>
+  </form>
+</div>

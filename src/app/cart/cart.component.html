@@ -1,0 +1,41 @@
+<h3>Shop cart</h3>
+<h5 class="text-main">
+  Total price : {{ cartDetail?.totalCartPrice | currency : "EGP" }}
+</h5>
+<div
+  *ngFor="let item of cartList"
+  [hidden]="item?.count == 0"
+  class="row align-items-center mt-4"
+>
+  <div class="col-md-2 mb-3">
+    <img [src]="item?.product?.imageCover" alt="" class="w-100" />
+  </div>
+  <div class="col-md-10 d-flex justify-content-between">
+    <div>
+      <p>{{ item?.product?.title }}</p>
+      <p class="text-main">price : {{ item?.price }}</p>
+      <button class="btn m-0 p-0" (click)="removeItem(item?.product?._id)">
+        <i class="fa-regular fa-trash-can text-danger"></i> Remove
+      </button>
+    </div>
+    <div>
+      <button
+        class="btn border-success me-2"
+        (click)="updateQuantity(item?.product?._id, 1 + item?.count)"
+      >
+        +
+      </button>
+      <span>{{ item?.count }}</span>
+      <button
+        class="btn border-success ms-2"
+        (click)="updateQuantity(item?.product?._id, item?.count - 1)"
+      >
+        -
+      </button>
+    </div>
+  </div>
+</div>
+<button class="btn bg-main text-white mt-3" (click)="gotoCheckOut()">
+  Online payment
+</button>
+<i class="fas fa-spinner fa-spin spinner text-muted" *ngIf="isLoading"></i>

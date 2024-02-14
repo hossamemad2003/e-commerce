@@ -1,0 +1,40 @@
+<div class="container d-flex justify-content-between" style="margin-top: 80px">
+  <div style="width: 400px; height: 300px">
+    <owl-carousel-o [options]="customOptions">
+      <ng-container *ngFor="let imgUrl of iProduct.images">
+        <ng-template carouselSlide>
+          <img
+            [src]="imgUrl"
+            alt="product image"
+            style="width: 350px; height: 300px"
+          />
+        </ng-template>
+      </ng-container>
+    </owl-carousel-o>
+  </div>
+  <div>
+    <h3 class="h5">{{ iProduct?.title }}</h3>
+    <div class="text-muted mt-3">
+      <p class="h6 ms-2">{{ iProduct?.description }}</p>
+      <p>{{ iProduct?.category.name }}</p>
+      <div class="mt-2 text-muted d-flex justify-content-between">
+        <span>{{ iProduct?.price | currency : "EGP" }} </span>
+        <span
+          ><i class="fas fa-star rating-color"></i
+          >{{ iProduct?.ratingsAverage }}</span
+        >
+      </div>
+    </div>
+    <button
+      class="btn bg-main text-white mt-5"
+      style="width: 100%"
+      (click)="addToCart(iProduct?._id)"
+    >
+      <span *ngIf="!isLoading">+ Add to cart</span>
+      <i *ngIf="isLoading" class="fas fa-spinner fa-spin"></i>
+    </button>
+    <div class="alert alert-success mt-3" role="alert" *ngIf="isAdded">
+      added to cart successfully
+    </div>
+  </div>
+</div>
