@@ -18,7 +18,7 @@
       placeholder="search for product by name"
     />
   </div>
-  <div *ngFor="let item of productList | search : searchTerm" class="col-md-2">
+  <div *ngFor="let item of productList | search : searchTerm" class="col-md-3">
     <div class="product px-2 py-4">
       <img class="w-100" src="{{ item?.imageCover }}" alt="product image" />
       <span class="mt-2 text-main cat">{{ item?.category.name }}</span>
